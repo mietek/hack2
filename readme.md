@@ -1,7 +1,7 @@
-Hack: a Haskell Webserver Interface
+Hack2: a Haskell Webserver Interface (V2)
 ========================================
 
-Hack is a port of Ruby's [Rack](http://rack.rubyforge.org/) webserver interface.
+Hack2 is a port of Ruby's [Rack](http://rack.rubyforge.org/) webserver interface.
 
 Version
 -------

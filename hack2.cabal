@@ -21,4 +21,4 @@ library
   build-depends: base >= 3 && < 5, data-default >= 0.2, bytestring
   hs-source-dirs: src/
   exposed-modules:  
-                    Hack
+                    Hack2

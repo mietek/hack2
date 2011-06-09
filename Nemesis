@@ -19,5 +19,10 @@ nemesis = do
 
 
   desc "start console"
-  task "i" (sh "ghci -isrc src/Hack2.hs")
+  task "i" - do
+    sh "ghci -isrc src/Hack2.hs"
+    
 
+  desc "run hello world"
+  task "hello" - do
+    sh "ghci -iexample example/hello.hs"
