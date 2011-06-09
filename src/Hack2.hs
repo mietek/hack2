@@ -25,7 +25,7 @@ data HackUrlScheme = HTTP | HTTPS deriving (Show, Read, Eq)
 newtype HackErrors = HackErrors { unHackErrors :: ByteString -> IO () }
 
 instance Show HackErrors where
-  show _ = "Error Stream"
+  show _ = "HackErrors"
 
 instance Default HackErrors where
   def = HackErrors (B.hPutStr stderr)
