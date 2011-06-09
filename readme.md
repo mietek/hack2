@@ -6,7 +6,7 @@ Hack2 is a port of Ruby's [Rack](http://rack.rubyforge.org/) webserver interface
 Version
 -------
 
-> 2009.10.30
+> 2011.6.10
 
 Introduction
 ------------
@@ -25,15 +25,14 @@ Separation of concerns:
 
 ### Demo
 
-    import Hack
-    import Hack.Handler.Happstack
-    import Data.ByteString.Lazy.Char8 (pack)
+    {-# LANGUAGE OverloadedStrings #-}
+
+    import Hack2
 
     app :: Application
     app = \env -> return $
-      Response 200 [ ("Content-Type", "text/plain") ] (pack "Hello World")
-
-    main = run app
+      Response 200 [ ("Content-Type", "text/plain") ] "Hello World"
+    
 
 Spec
 ----
@@ -51,8 +50,6 @@ Spec
 * __hackUrlScheme__: `HTTP` or `HTTPS`, depending on the request URL. 
 * __hackInput__: The body of the request.
 * __hackErrors__: The error stream.
-* __hackHeaders__: None http headers, intended to be used by handlers and middleware.
-* __hackCache__: High performance cache, could be used by handlers and middleware.
 
 
 ### The Response
@@ -67,6 +64,7 @@ Spec
 * The __pathInfo__, if non-empty, must start with /
 * One of __scriptName__ or __pathInfo__ must be set. __pathInfo__ should be / if __scriptName__ is empty. __scriptName__ never should be /, but instead be empty.
 
+
 1 minute tutorial
 -----------------
 
@@ -76,25 +74,26 @@ Spec
     
 ### install hack
 
-    cabal install hack
+    cabal install hack2
 
 ### pick a backend
 
-    cabal install hack-handler-happstack
+    cabal install hack2-handler-happstack
 
 ### Create a Hack app
 
 put the following code in `Main.hs`
 
-    import Hack
-    import Hack.Handler.Happstack
-    import Data.ByteString.Lazy.Char8 (pack)
+    {-# LANGUAGE OverloadedStrings #-}
+
+    import Hack2
+    import Hack2.Handler.Happstack
 
     app :: Application
     app = \env -> return $ Response 
         { status  = 200
         , headers = [ ("Content-Type", "text/plain") ]
-        , body    = pack "Hello World"
+        , body    = "Hello World"
         }
 
     main = run app
@@ -108,6 +107,10 @@ It should be running on [http://127.0.0.1:3000](http://127.0.0.1:3000) now.
 
 Middleware
 -----------
+
+(below is waiting to be finished)
+------------------------------------------
+
 
 ### demo usage of middleware
 

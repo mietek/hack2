@@ -23,6 +23,11 @@ nemesis = do
     sh "ghci -isrc src/Hack2.hs"
     
 
-  desc "run hello world"
-  task "hello" - do
-    sh "ghci -iexample example/hello.hs"
+  desc "run hello1"
+  task "h1" - do
+    sh "runghc -iexample example/hello1.hs"
+    
+    
+  desc "run hello2"
+  task "h2" - do
+    sh "runghc -iexample example/hello2.hs"
