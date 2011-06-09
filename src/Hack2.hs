@@ -1,7 +1,7 @@
 module Hack2 where
 
-import Data.Default
-import System.IO
+import Data.Default (def, Default)
+import System.IO (stderr)
 
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as B
@@ -20,7 +20,7 @@ data RequestMethod =
   |  CONNECT
   deriving (Show, Read, Eq)
 
-data Hack_UrlScheme = HTTP | HTTPS deriving (Show, Eq)
+data HackUrlScheme = HTTP | HTTPS deriving (Show, Eq)
 
 newtype HackErrors = HackErrors { unHackErrors :: ByteString -> IO () }
 
@@ -39,7 +39,7 @@ data Env = Env
   ,  serverPort     :: Int
   ,  http           :: [(ByteString, ByteString)]
   ,  hackVersion    :: [Int]
-  ,  hackUrlScheme  :: Hack_UrlScheme
+  ,  hackUrlScheme  :: HackUrlScheme
   ,  hackInput      :: ByteString
   ,  hackErrors     :: HackErrors
   ,  hackHeaders    :: [(ByteString, ByteString)]
@@ -56,7 +56,7 @@ data Response = Response
 instance Default RequestMethod where
   def = GET
 
-instance Default Hack_UrlScheme where
+instance Default HackUrlScheme where
   def = HTTP
 
 instance Default Response where
