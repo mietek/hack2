@@ -15,9 +15,9 @@ Introduction
 
 Separation of concerns:
 
-* hack: interface spec
-* hack-middleware: building blocks
-* hack-handler: server backends
+* hack2: interface spec
+* hack2-middleware: building blocks
+* hack2-handler: server backends
 
 ### Design
 
