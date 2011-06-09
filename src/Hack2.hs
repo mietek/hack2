@@ -37,7 +37,7 @@ data Env = Env
   ,  queryString    :: ByteString
   ,  serverName     :: ByteString
   ,  serverPort     :: Int
-  ,  http           :: [(ByteString, ByteString)]
+  ,  httpHeaders    :: [(ByteString, ByteString)]
   ,  hackVersion    :: (Int, Int, Int)
   ,  hackUrlScheme  :: HackUrlScheme
   ,  hackInput      :: ByteString
@@ -76,7 +76,7 @@ instance Default Env where
       , queryString   = B.empty
       , serverName    = B.empty
       , serverPort    = def
-      , http          = def
+      , httpHeaders   = def
       , hackVersion   = currentVersion
       , hackUrlScheme = def
       , hackInput     = B.empty

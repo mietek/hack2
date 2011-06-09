@@ -44,7 +44,7 @@ Spec
 * __pathInfo__: The remainder of the request URL‘s “path”, designating the virtual “location” of the request‘s target within the application. This may be an empty string, if the request URL targets the application root and does not have a trailing slash. This value may be percent-encoded when I originating from a URL.
 * __queryString__: The portion of the request URL that follows the ?, if any. May be empty.
 * __serverName, serverPort__: When combined with scriptName and pathInfo, these variables can be used to complete the URL. Note, however, that `Host` in http field, if present, should be used in preference to serverName for reconstructing the request URL. serverName and serverPort can never be empty, and so are always required.
-* __http__: Variables corresponding to the client-supplied HTTP request headers (e.g. "Accept"). The presence or absence of these variables should correspond with the presence or absence of the appropriate HTTP header in the request. 
+* __httpHeaders__: Variables corresponding to the client-supplied HTTP request headers (e.g. "Accept"). The presence or absence of these variables should correspond with the presence or absence of the appropriate HTTP header in the request. 
 * __hackVersion__: The list of `Int`, representing this version of Hack
 * __hackUrlScheme__: `HTTP` or `HTTPS`, depending on the request URL. 
 * __hackInput__: The body of the request.
