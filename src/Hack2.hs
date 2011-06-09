@@ -38,7 +38,7 @@ data Env = Env
   ,  serverName     :: ByteString
   ,  serverPort     :: Int
   ,  http           :: [(ByteString, ByteString)]
-  ,  hackVersion    :: [Int]
+  ,  hackVersion    :: (Int, Int, Int)
   ,  hackUrlScheme  :: HackUrlScheme
   ,  hackInput      :: ByteString
   ,  hackErrors     :: HackErrors
@@ -84,4 +84,4 @@ instance Default Env where
       , hackHeaders   = def
     }
     where
-      currentVersion = [2011, 6, 10]
+      currentVersion = (2011, 6, 10)
