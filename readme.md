@@ -87,7 +87,7 @@ put the following code in `Main.hs`
     {-# LANGUAGE OverloadedStrings #-}
 
     import Hack2
-    import Hack2.Handler.Happstack
+    import Hack2.Handler.HappstackServer
 
     app :: Application
     app = \env -> return $ Response 
@@ -121,7 +121,7 @@ install hack-contrib:
 put the following in `Main.hs`. This code uses the `URLMap` middleware to route both `/hello` and `/there` to the `say` application.
 
     import Hack
-    import Hack.Handler.Happstack
+    import Hack.Handler.HappstackServer
     import Hack.Contrib.Utils
     import Hack.Contrib.Middleware.URLMap
     import Data.ByteString.Lazy.Char8 (pack)

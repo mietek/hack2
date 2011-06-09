@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Hack2
-import Hack2.Handler.Happstack
+import Hack2.Handler.HappstackServer
 
 app :: Application
 app = \env -> return $
