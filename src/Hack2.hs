@@ -20,7 +20,7 @@ data RequestMethod =
   |  CONNECT
   deriving (Show, Read, Eq)
 
-data HackUrlScheme = HTTP | HTTPS deriving (Show, Eq)
+data HackUrlScheme = HTTP | HTTPS deriving (Show, Read, Eq)
 
 newtype HackErrors = HackErrors { unHackErrors :: ByteString -> IO () }
 
@@ -29,6 +29,9 @@ instance Show HackErrors where
 
 instance Default HackErrors where
   def = HackErrors (B.hPutStr stderr)
+
+instance Eq HackErrors where
+  _ == _ = True
 
 data Env = Env 
   {  requestMethod  :: RequestMethod
@@ -44,14 +47,14 @@ data Env = Env
   ,  hackErrors     :: HackErrors
   ,  hackHeaders    :: [(ByteString, ByteString)]
   }
-  deriving (Show)
+  deriving (Show, Eq)
 
 data Response = Response
   {  status   :: Int
   ,  headers  :: [(ByteString, ByteString)]
   ,  body     :: ByteString
   }
-  deriving (Show)
+  deriving (Show, Eq)
 
 instance Default RequestMethod where
   def = GET
