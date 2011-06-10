@@ -78,7 +78,7 @@ Spec
 
 ### pick a backend
 
-    cabal install hack2-handler-happstack
+    cabal install hack2-handler-happstack-server
 
 ### Create a Hack app
 
