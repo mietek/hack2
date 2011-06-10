@@ -31,3 +31,8 @@ nemesis = do
   desc "run hello2"
   task "h2" - do
     sh "runghc -iexample example/hello2.hs"
+
+
+  desc "run hello3"
+  task "h3" - do
+    sh "runghc -iexample example/hello3.hs"

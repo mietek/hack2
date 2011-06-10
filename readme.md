@@ -108,22 +108,20 @@ It should be running on [http://127.0.0.1:3000](http://127.0.0.1:3000) now.
 Middleware
 -----------
 
-(below is waiting to be finished)
-------------------------------------------
-
-
 ### demo usage of middleware
 
-install hack-contrib:
+install hack2-contrib:
 
-    cabal install hack-contrib
+    cabal install hack2-contrib
 
 put the following in `Main.hs`. This code uses the `URLMap` middleware to route both `/hello` and `/there` to the `say` application.
 
-    import Hack
-    import Hack.Handler.HappstackServer
-    import Hack.Contrib.Utils
-    import Hack.Contrib.Middleware.URLMap
+    {-# LANGUAGE OverloadedStrings #-}
+    
+    import Hack2
+    import Hack2.Handler.HappstackServer
+    import Hack2.Contrib.Utils
+    import Hack2.Contrib.Middleware.URLMap
     import Data.ByteString.Lazy.Char8 (pack)
     import Data.Default
     
@@ -137,7 +135,7 @@ put the following in `Main.hs`. This code uses the `URLMap` middleware to route 
 
 ### create a middleware
 
-inside Hack.hs:
+inside Hack2.hs:
 
     type Middleware = Application -> Application
 
@@ -149,9 +147,9 @@ just pass an applied middleware into a chain.
 
 finally the source code of `Config.hs`:
 
-    module Hack.Contrib.Middleware.Config (config) where
+    module Hack2.Contrib.Middleware.Config (config) where
 
-    import Hack
+    import Hack2
 
     config :: (Env -> Env) -> Middleware
     config alter app = \env -> app (alter env)
@@ -159,7 +157,7 @@ finally the source code of `Config.hs`:
 
 ### Use the middleware stack
 
-From `Hack.Contrib.Utils`:
+From `Hack2.Contrib.Utils`:
 
     -- usage: use [content_type, cache] app
     use :: [Middleware] -> Middleware
@@ -168,7 +166,7 @@ From `Hack.Contrib.Utils`:
 Handlers
 --------
 
-Once an application is written using Hack, it should work on any web server that provides a Hack handler.
+Once an application is written using Hack2, it should work on any web server that provides a Hack2 handler.
 
 A handler should expose at least one function of type:
 
@@ -177,7 +175,7 @@ A handler should expose at least one function of type:
 Upgrade
 -------
 
-With every new release, any library links to hack should be recompiled against the new version, usually as simple as:
+With every new release, any library links to Hacks should be recompiled against the new version, usually as simple as:
 
     cabal install linked_lib --reinstall
 
