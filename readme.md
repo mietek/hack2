@@ -6,7 +6,7 @@ Hack2 is a port of Ruby's [Rack](http://rack.rubyforge.org/) webserver interface
 Version
 -------
 
-> 2011.6.10
+> 2011.6.19
 
 Introduction
 ------------
