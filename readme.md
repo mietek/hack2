@@ -54,7 +54,7 @@ Spec
 * __httpHeaders__: Variables corresponding to the client-supplied HTTP request headers (e.g. "Accept"). The presence or absence of these variables should correspond with the presence or absence of the appropriate HTTP header in the request. 
 * __hackVersion__: The list of `Int`, representing this version of Hack
 * __hackUrlScheme__: `HTTP` or `HTTPS`, depending on the request URL. 
-* __hackInput__: The body of the request.
+* __hackInput__: The body of the request, enumerator style.
 * __hackErrors__: The error stream.
 * __hackHeaders__: None standard http headers.
 
@@ -63,7 +63,7 @@ Spec
 
 * __status__: This is an HTTP status. It must be greater than or equal to 100. 
 * __headers__: The header must not contain a Status key, contain keys with : or newlines in their name, contain keys names that end in - or _, but only contain keys that consist of letters, digits, _ or - and start with a letter. The values of the header must be Strings, consisting of lines (for multiple header values) separated by “\n”. The lines must not contain characters below 037.
-* __body__: The body of the response.
+* __body__: The body of the response, enumerator style.
 
 ### Properties
 
