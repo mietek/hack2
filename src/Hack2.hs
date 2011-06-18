@@ -5,7 +5,6 @@ module Hack2 where
 
 import Data.Default (def, Default)
 import System.IO (stderr)
-import Data.Data
 
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as B
@@ -99,4 +98,4 @@ instance Default Env where
       , hackHeaders   = def
     }
     where
-      currentVersion = (2011, 6, 18)
+      currentVersion = (2011, 6, 19)
