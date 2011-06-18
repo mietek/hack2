@@ -1,10 +1,17 @@
+{-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE Rank2Types #-}
+
 module Hack2 where
 
 import Data.Default (def, Default)
 import System.IO (stderr)
+import Data.Data
 
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as B
+import qualified Data.ByteString as Strict
+
+import Data.Enumerator (Enumerator, enumEOF)
 
 type Application = Env -> IO Response
 type Middleware  = Application -> Application
@@ -33,6 +40,11 @@ instance Default HackErrors where
 instance Eq HackErrors where
   _ == _ = True
 
+newtype HackEnumerator = HackEnumerator { unHackEnumerator :: (forall a. Enumerator Strict.ByteString IO a) }
+
+instance Show HackEnumerator where
+  show _ = "HackEnumerator"
+
 data Env = Env 
   {  requestMethod  :: RequestMethod
   ,  scriptName     :: ByteString
@@ -43,18 +55,18 @@ data Env = Env
   ,  httpHeaders    :: [(ByteString, ByteString)]
   ,  hackVersion    :: (Int, Int, Int)
   ,  hackUrlScheme  :: HackUrlScheme
-  ,  hackInput      :: ByteString
+  ,  hackInput      :: HackEnumerator
   ,  hackErrors     :: HackErrors
   ,  hackHeaders    :: [(ByteString, ByteString)]
   }
-  deriving (Show, Eq)
+  deriving (Show)
 
 data Response = Response
   {  status   :: Int
   ,  headers  :: [(ByteString, ByteString)]
-  ,  body     :: ByteString
+  ,  body     :: HackEnumerator
   }
-  deriving (Show, Eq)
+  deriving (Show)
 
 instance Default RequestMethod where
   def = GET
@@ -67,7 +79,7 @@ instance Default Response where
     {
       status  = 200
     , headers = []
-    , body    = B.empty
+    , body    = HackEnumerator enumEOF
     }
 
 instance Default Env where
@@ -82,9 +94,9 @@ instance Default Env where
       , httpHeaders   = def
       , hackVersion   = currentVersion
       , hackUrlScheme = def
-      , hackInput     = B.empty
+      , hackInput     = HackEnumerator enumEOF
       , hackErrors    = def
       , hackHeaders   = def
     }
     where
-      currentVersion = (2011, 6, 10)
+      currentVersion = (2011, 6, 18)
