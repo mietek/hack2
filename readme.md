@@ -28,10 +28,17 @@ Separation of concerns:
     {-# LANGUAGE OverloadedStrings #-}
 
     import Hack2
+    import Hack2.Contrib.Response (set_body_bytestring)
+    import Hack2.Handler.HappstackServer
+    import Data.Default (def)
 
     app :: Application
-    app = \env -> return $
-      Response 200 [ ("Content-Type", "text/plain") ] "Hello World"
+    app = \env -> 
+      return $ 
+        set_body_bytestring "Hello World" $
+          Response 200 [ ("Content-Type", "text/plain") ] def
+
+    main = run app
     
 
 Spec
@@ -76,6 +83,10 @@ Spec
 
     cabal install hack2
 
+### install some hack helpers
+  
+    cabal install hack2-contrib
+
 ### pick a backend
 
     cabal install hack2-handler-happstack-server
@@ -87,14 +98,15 @@ put the following code in `Main.hs`
     {-# LANGUAGE OverloadedStrings #-}
 
     import Hack2
+    import Hack2.Contrib.Response (set_body_bytestring)
     import Hack2.Handler.HappstackServer
+    import Data.Default (def)
 
     app :: Application
-    app = \env -> return $ Response 
-        { status  = 200
-        , headers = [ ("Content-Type", "text/plain") ]
-        , body    = "Hello World"
-        }
+    app = \env -> 
+      return $ 
+        set_body_bytestring "Hello World 2" $ 
+          def { headers = [ ("Content-Type", "text/plain") ] }
 
     main = run app
 
@@ -110,23 +122,22 @@ Middleware
 
 ### demo usage of middleware
 
-install hack2-contrib:
-
-    cabal install hack2-contrib
-
 put the following in `Main.hs`. This code uses the `URLMap` middleware to route both `/hello` and `/there` to the `say` application.
 
     {-# LANGUAGE OverloadedStrings #-}
-    
+
     import Hack2
+    import Hack2.Contrib.Response (set_body_bytestring)
     import Hack2.Handler.HappstackServer
-    import Hack2.Contrib.Utils
-    import Hack2.Contrib.Middleware.URLMap
+    import Data.Default (def)
+
     import Data.ByteString.Lazy.Char8 (pack)
-    import Data.Default
-    
+    import Hack2.Contrib.Utils (empty_app)
+    import Hack2.Contrib.Middleware.URLMap
+
+
     say :: Application
-    say = \env -> return $ def {body = pack $ show env, status = 200}
+    say = \env -> return $ set_body_bytestring (pack $ show env) def
 
     app :: Application
     app = url_map [("/hello", say), ("/there", say)] empty_app
