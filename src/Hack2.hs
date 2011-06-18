@@ -44,6 +44,9 @@ newtype HackEnumerator = HackEnumerator { unHackEnumerator :: (forall a. Enumera
 instance Show HackEnumerator where
   show _ = "HackEnumerator"
 
+instance Default HackEnumerator where
+  def = HackEnumerator enumEOF
+
 data Env = Env 
   {  requestMethod  :: RequestMethod
   ,  scriptName     :: ByteString
@@ -78,7 +81,7 @@ instance Default Response where
     {
       status  = 200
     , headers = []
-    , body    = HackEnumerator enumEOF
+    , body    = def
     }
 
 instance Default Env where
@@ -93,7 +96,7 @@ instance Default Env where
       , httpHeaders   = def
       , hackVersion   = currentVersion
       , hackUrlScheme = def
-      , hackInput     = HackEnumerator enumEOF
+      , hackInput     = def
       , hackErrors    = def
       , hackHeaders   = def
     }
