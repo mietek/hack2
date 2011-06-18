@@ -36,9 +36,6 @@ instance Show HackErrors where
 instance Default HackErrors where
   def = HackErrors (B.hPutStr stderr)
 
-instance Eq HackErrors where
-  _ == _ = True
-
 newtype HackEnumerator = HackEnumerator { unHackEnumerator :: (forall a. Enumerator Strict.ByteString IO a) }
 
 instance Show HackEnumerator where
