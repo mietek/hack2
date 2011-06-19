@@ -186,7 +186,7 @@ A handler should expose at least one function of type:
 Upgrade
 -------
 
-With every new release, any library links to Hacks should be recompiled against the new version, usually as simple as:
+With every new release, any library links to Hack2 should be recompiled against the new version, usually as simple as:
 
     cabal install linked_lib --reinstall
 
