@@ -6,8 +6,8 @@ module Hack2 where
 import Data.Default (def, Default)
 import System.IO (stderr)
 
-import Data.ByteString.Lazy (ByteString)
-import qualified Data.ByteString.Lazy as B
+import Data.ByteString (ByteString)
+import qualified Data.ByteString as B
 import qualified Data.ByteString as Strict
 
 import Data.Enumerator (Enumerator, enumEOF)
