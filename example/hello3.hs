@@ -2,7 +2,7 @@
 
 import Hack2
 import Hack2.Contrib.Response (set_body_bytestring)
-import Hack2.Handler.HappstackServer
+import Hack2.Handler.SnapServer
 import Data.Default (def)
 
 import Data.ByteString.Lazy.Char8 (pack)
