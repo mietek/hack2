@@ -29,7 +29,7 @@ Separation of concerns:
 
     import Hack2
     import Hack2.Contrib.Response (set_body_bytestring)
-    import Hack2.Handler.HappstackServer
+    import Hack2.Handler.SnapServer
     import Data.Default (def)
 
     app :: Application
@@ -89,7 +89,7 @@ Spec
 
 ### pick a backend
 
-    cabal install hack2-handler-happstack-server
+    cabal install hack2-handler-snap-server
 
 ### Create a Hack app
 
@@ -99,7 +99,7 @@ put the following code in `Main.hs`
 
     import Hack2
     import Hack2.Contrib.Response (set_body_bytestring)
-    import Hack2.Handler.HappstackServer
+    import Hack2.Handler.SnapServer
     import Data.Default (def)
 
     app :: Application
@@ -128,7 +128,7 @@ put the following in `Main.hs`. This code uses the `URLMap` middleware to route 
 
     import Hack2
     import Hack2.Contrib.Response (set_body_bytestring)
-    import Hack2.Handler.HappstackServer
+    import Hack2.Handler.SnapServer
     import Data.Default (def)
 
     import Data.ByteString.Lazy.Char8 (pack)
