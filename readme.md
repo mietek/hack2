@@ -30,7 +30,8 @@ Separation of concerns:
     app = \env -> 
       return $ 
         set_body_bytestring "Hello World" $
-          Response 200 [ ("Content-Type", "text/plain") ] ""
+          Response 
+            200 [ ("Content-Type", "text/plain") ] ""
 
     main = run app
     
