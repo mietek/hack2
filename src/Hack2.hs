@@ -8,9 +8,6 @@ import System.IO (stderr)
 
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as B
-import qualified Data.ByteString as Strict
-
-import Data.Enumerator (Enumerator, enumEOF)
 
 type Application = Env -> IO Response
 type Middleware  = Application -> Application
@@ -36,13 +33,6 @@ instance Show HackErrors where
 instance Default HackErrors where
   def = HackErrors (B.hPutStr stderr)
 
-newtype HackEnumerator = HackEnumerator { unHackEnumerator :: (forall a. Enumerator Strict.ByteString IO a) }
-
-instance Show HackEnumerator where
-  show _ = "HackEnumerator"
-
-instance Default HackEnumerator where
-  def = HackEnumerator enumEOF
 
 data Env = Env 
   {  requestMethod  :: RequestMethod
@@ -54,7 +44,7 @@ data Env = Env
   ,  httpHeaders    :: [(ByteString, ByteString)]
   ,  hackVersion    :: (Int, Int, Int)
   ,  hackUrlScheme  :: HackUrlScheme
-  ,  hackInput      :: HackEnumerator
+  ,  hackInput      :: ByteString
   ,  hackErrors     :: HackErrors
   ,  hackHeaders    :: [(ByteString, ByteString)]
   }
@@ -63,7 +53,7 @@ data Env = Env
 data Response = Response
   {  status   :: Int
   ,  headers  :: [(ByteString, ByteString)]
-  ,  body     :: HackEnumerator
+  ,  body     :: ByteString
   }
   deriving (Show)
 
@@ -78,7 +68,7 @@ instance Default Response where
     {
       status  = 200
     , headers = []
-    , body    = def
+    , body    = B.empty
     }
 
 instance Default Env where
@@ -93,7 +83,7 @@ instance Default Env where
       , httpHeaders   = def
       , hackVersion   = currentVersion
       , hackUrlScheme = def
-      , hackInput     = def
+      , hackInput     = B.empty
       , hackErrors    = def
       , hackHeaders   = def
     }

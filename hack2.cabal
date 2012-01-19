@@ -1,5 +1,5 @@
 Name:                 hack2
-Version:              2011.6.20
+Version:              2012.1.19
 Build-type:           Simple
 Synopsis:             a Haskell Webserver Interface (V2)
 Description:
@@ -18,7 +18,7 @@ data-files:           readme.md, changelog.md
 
 library
   ghc-options: -Wall
-  build-depends: base >= 3 && < 5, data-default >= 0.2, bytestring, enumerator < 5
+  build-depends: base >= 3 && < 99, data-default >= 0.2, bytestring
   hs-source-dirs: src/
   exposed-modules:  
                     Hack2
