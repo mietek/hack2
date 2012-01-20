@@ -125,7 +125,7 @@ put the following in `Main.hs`. This code uses the `URLMap` middleware to route 
     import Hack2.Handler.SnapServer
     import Data.Default (def)
 
-    import Data.ByteString.Lazy.Char8 (pack)
+    import Data.ByteString.Char8 (pack)
     import Hack2.Contrib.Utils (empty_app)
     import Hack2.Contrib.Middleware.URLMap
 
