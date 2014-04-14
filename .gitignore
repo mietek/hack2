@@ -7,3 +7,6 @@
 /dist
 
 .nemesis
+
+.DS_Store
+
